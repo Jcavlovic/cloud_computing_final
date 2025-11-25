@@ -1,0 +1,103 @@
+:root {
+  --bg: #0f0f0f;
+  --text: #ffffff;
+  --accent: #00d4ff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.bg-animation {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  z-index: 1;
+}
+
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 4.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.info-section h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 1.8rem 0 0.8rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.link {
+  display: block;
+  color: var(--accent);
+  font-size: 1.4rem;
+  margin: 0.8rem 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.creators .link {
+  display: inline-block;
+  margin: 0.6rem 1rem;
+  font-size: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  h1 { font-size: 3.2rem; }
+  .subtitle { font-size: 1.1rem; }
+  .link { font-size: 1.2rem; }
+  .creators .link { display: block; margin: 0.8rem 0; }
+}
