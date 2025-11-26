@@ -13,7 +13,7 @@ jobs:
         with:
           host: cc-final.cavlovic.dev
           username: cc_final
-          key: ${{ secrets.DEPLOY_KEY }}
+          key: ${{ secrets.SECRET_DEPLOY }}
           port: 22
           script: |
             cd /home/cc_final/cloud_computing_final
