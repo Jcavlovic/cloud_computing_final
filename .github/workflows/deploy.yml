@@ -12,7 +12,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: cc-final.cavlovic.dev
-          username: cc_final
+          username: cav
           key: ${{ secrets.SECRET_DEPLOY }}
           port: 22
           script: |
