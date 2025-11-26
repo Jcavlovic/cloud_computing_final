@@ -1,0 +1,24 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [ main ]   # change to master if you use master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: cc-final.cavlovic.dev
+          username: cc_final
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: |
+            cd /home/cc_final/cloud_computing_final
+            git pull
+            source .venv/bin/activate || source /home/cc_final/cloud_computing_final/.venv/bin/activate
+            pip install -r requirements.txt -q
+            sudo systemctl restart cc_final.service
+            echo "Deployed successfully!"
