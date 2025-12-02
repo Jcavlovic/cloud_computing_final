@@ -62,5 +62,133 @@
     "stock_quantity": 8,
     "price": 999.99,
     "threshold": 2
+  },
+  {
+    "sku": "GPU-NV-4070",
+    "category": "GPU",
+    "name": "NVIDIA GeForce RTX 4070 Ti",
+    "stock_quantity": 22,
+    "price": 799.99,
+    "threshold": 5
+  },
+  {
+    "sku": "CPU-INT-I5",
+    "category": "CPU",
+    "name": "Intel Core i5-13600K",
+    "stock_quantity": 55,
+    "price": 319.99,
+    "threshold": 12
+  },
+  {
+    "sku": "MOBO-MSI-B650",
+    "category": "Motherboard",
+    "name": "MSI MAG B650 Tomahawk WiFi",
+    "stock_quantity": 40,
+    "price": 219.99,
+    "threshold": 8
+  },
+  {
+    "sku": "RAM-COR-16",
+    "category": "RAM",
+    "name": "Corsair Vengeance DDR5 16GB",
+    "stock_quantity": 150,
+    "price": 64.99,
+    "threshold": 25
+  },
+  {
+    "sku": "CASE-COR-4000D",
+    "category": "Case",
+    "name": "Corsair 4000D Airflow",
+    "stock_quantity": 35,
+    "price": 94.99,
+    "threshold": 10
+  },
+  {
+    "sku": "PSU-EVGA-750",
+    "category": "PSU",
+    "name": "EVGA SuperNOVA 750 GT",
+    "stock_quantity": 28,
+    "price": 109.99,
+    "threshold": 8
+  },
+  {
+    "sku": "CPU-AMD-R5",
+    "category": "CPU",
+    "name": "AMD Ryzen 5 7600X",
+    "stock_quantity": 42,
+    "price": 249.00,
+    "threshold": 10
+  },
+  {
+    "sku": "GPU-AMD-7800",
+    "category": "GPU",
+    "name": "AMD Radeon RX 7800 XT",
+    "stock_quantity": 15,
+    "price": 499.99,
+    "threshold": 4
+  },
+  {
+    "sku": "MOBO-GIG-X670",
+    "category": "Motherboard",
+    "name": "GIGABYTE X670 AORUS Elite",
+    "stock_quantity": 10,
+    "price": 289.99,
+    "threshold": 3
+  },
+  {
+    "sku": "RAM-KIN-64",
+    "category": "RAM",
+    "name": "Kingston Fury Beast 64GB",
+    "stock_quantity": 20,
+    "price": 239.99,
+    "threshold": 5
+  },
+  {
+    "sku": "CASE-HYTE-Y60",
+    "category": "Case",
+    "name": "HYTE Y60 Panoramic Case",
+    "stock_quantity": 7,
+    "price": 199.99,
+    "threshold": 2
+  },
+  {
+    "sku": "PSU-SEA-1000",
+    "category": "PSU",
+    "name": "Seasonic Vertex GX-1000",
+    "stock_quantity": 14,
+    "price": 229.99,
+    "threshold": 3
+  },
+  {
+    "sku": "GPU-NV-4060",
+    "category": "GPU",
+    "name": "NVIDIA GeForce RTX 4060",
+    "stock_quantity": 50,
+    "price": 299.99,
+    "threshold": 15
+  },
+  {
+    "sku": "CPU-INT-I7",
+    "category": "CPU",
+    "name": "Intel Core i7-13700K",
+    "stock_quantity": 33,
+    "price": 419.99,
+    "threshold": 8
+  },
+  {
+    "sku": "MOBO-ASUS-B760",
+    "category": "Motherboard",
+    "name": "ASUS TUF Gaming B760-Plus",
+    "stock_quantity": 38,
+    "price": 189.99,
+    "threshold": 9
+  },
+  {
+    "sku": "RAM-TEAM-32",
+    "category": "RAM",
+    "name": "TeamGroup T-Force Delta 32GB",
+    "stock_quantity": 65,
+    "price": 99.99,
+    "threshold": 12
   }
 ]
