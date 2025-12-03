@@ -1,0 +1,74 @@
+[
+  {
+    "sku": "GPU-NV-4090",
+    "category": "GPU",
+    "name": "NVIDIA GeForce RTX 4090",
+    "stock_quantity": 12,
+    "price": 1599.99,
+    "threshold": 3
+  },
+  {
+    "sku": "CPU-INT-I9",
+    "category": "CPU",
+    "name": "Intel Core i9-13900K",
+    "stock_quantity": 45,
+    "price": 589.99,
+    "threshold": 10
+  },
+  {
+    "sku": "CPU-AMD-R7",
+    "category": "CPU",
+    "name": "AMD Ryzen 7 7800X3D",
+    "stock_quantity": 30,
+    "price": 449.00,
+    "threshold": 5
+  },
+  {
+    "sku": "PSU-COR-850",
+    "category": "PSU",
+    "name": "Corsair RM850x 850W Gold",
+    "stock_quantity": 60,
+    "price": 129.99,
+    "threshold": 10
+  },
+  {
+    "sku": "MOBO-ASUS-Z790",
+    "category": "Motherboard",
+    "name": "ASUS ROG Strix Z790-E",
+    "stock_quantity": 25,
+    "price": 499.99,
+    "threshold": 5
+  },
+  {
+    "sku": "RAM-GSK-32",
+    "category": "RAM",
+    "name": "G.SKILL Trident Z5 RGB 32GB",
+    "stock_quantity": 100,
+    "price": 119.99,
+    "threshold": 20
+  },
+  {
+    "sku": "CASE-NZXT-H9",
+    "category": "Case",
+    "name": "NZXT H9 Flow Dual-Chamber",
+    "stock_quantity": 18,
+    "price": 159.99,
+    "threshold": 4
+  },
+  {
+    "sku": "GPU-AMD-7900",
+    "category": "GPU",
+    "name": "Sapphire Pulse AMD Radeon RX 7900 XTX",
+    "stock_quantity": 8,
+    "price": 999.99,
+    "threshold": 2
+  },
+  {
+    "sku": "GPU-NV-4070",
+    "category": "GPU",
+    "name": "NVIDIA GeForce RTX 4070 Ti",
+    "stock_quantity": 22,
+    "price": 799.99,
+    "threshold": 5
+  },
+]
