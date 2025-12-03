@@ -1,56 +1,96 @@
 # app.py
 from flask import Flask, render_template, request, redirect, url_for
+import boto3
+from boto3.dynamodb.conditions import Key
+import uuid
+from decimal import Decimal
 
 app = Flask(__name__)
 
-# In-memory "database" – a simple list
-inventory = [
-    {"id": 1, "category": "GPU", "name": "RTX 4090", "quantity": 5, "price": 1599.99},
-    {"id": 2, "category": "CPU", "name": "Ryzen 9 7950X", "quantity": 8, "price": 589.00},
-    {"id": 3, "category": "RAM", "name": "32GB DDR5 6000MHz", "quantity": 15, "price": 189.99},
-]
+# DynamoDB Configuration
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
+table = dynamodb.Table('ElectronicsInventory')
 
-# Helper to get next ID
-def get_next_id():
-    return max([item["id"] for item in inventory], default=0) + 1
+def decimal_default(obj):
+    if isinstance(obj, Decimal):
+        return float(obj)
+    return obj
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=inventory)
+    # Scan the table to get all items
+    response = table.scan()
+    items = response.get('Items', [])
+    
+    # Converting Decimals to floats for the template.
+    for item in items:
+        item['price'] = float(item['price'])
+        # Ensure 'id' exists for the template to use (mapping sku to id)
+        item['id'] = item['sku']
+        # Map stock_quantity to quantity for template compatibility
+        item['quantity'] = int(item.get('stock_quantity', 0))
+        
+    return render_template('index.html', items=items)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_item():
     if request.method == 'POST':
+        # Generate a unique SKU
+        category = request.form['category']
+        name = request.form['name']
+        short_name = name[:3].upper().replace(" ", "")
+        random_suffix = str(uuid.uuid4())[:4].upper()
+        generated_sku = f"{category}-{short_name}-{random_suffix}"
+        
         new_item = {
-            "id": get_next_id(),
-            "category": request.form['category'],
-            "name": request.form['name'],
-            "quantity": int(request.form['quantity']),
-            "price": float(request.form['price'])
+            "sku": generated_sku,
+            "category": category,
+            "name": name,
+            "stock_quantity": int(request.form['quantity']),
+            "price": Decimal(request.form['price']),
+            "threshold": 5 # Default threshold
         }
-        inventory.append(new_item)
+        
+        table.put_item(Item=new_item)
         return redirect(url_for('index'))
     return render_template('add.html')
 
-@app.route('/update/<int:item_id>', methods=['GET', 'POST'])
+@app.route('/update/<string:item_id>', methods=['GET', 'POST'])
 def update_item(item_id):
-    item = next((i for i in inventory if i["id"] == item_id), None)
-    if not item:
-        return "Item not found", 404
-
+    # item_id is the sku
     if request.method == 'POST':
-        item["category"] = request.form['category']
-        item["name"] = request.form['name']
-        item["quantity"] = int(request.form['quantity'])
-        item["price"] = float(request.form['price'])
+        # Update the item
+        table.update_item(
+            Key={'sku': item_id},
+            UpdateExpression="set category=:c, #n=:n, stock_quantity=:q, price=:p",
+            ExpressionAttributeNames={
+                "#n": "name"
+            },
+            ExpressionAttributeValues={
+                ':c': request.form['category'],
+                ':n': request.form['name'],
+                ':q': int(request.form['quantity']),
+                ':p': Decimal(request.form['price'])
+            }
+        )
         return redirect(url_for('index'))
 
+    # Get the item to pre-fill the form
+    response = table.get_item(Key={'sku': item_id})
+    item = response.get('Item')
+    
+    if not item:
+        return "Item not found", 404
+        
+    item['price'] = float(item['price'])
+    item['id'] = item['sku'] # For template compatibility
+    item['quantity'] = int(item.get('stock_quantity', 0))
+    
     return render_template('update.html', item=item)
 
-@app.route('/delete/<int:item_id>')
+@app.route('/delete/<string:item_id>')
 def delete_item(item_id):
-    global inventory
-    inventory = [i for i in inventory if i["id"] != item_id]
+    table.delete_item(Key={'sku': item_id})
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
